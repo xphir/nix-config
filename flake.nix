@@ -25,7 +25,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    #mac-app-util.url = "github:hraban/mac-app-util";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
@@ -34,6 +33,7 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    #mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -45,8 +45,8 @@
     self,
     nixpkgs,
     darwin,
-    nix-homebrew,
     home-manager,
+    nix-homebrew,
     homebrew-cask,
     homebrew-core,
     ...

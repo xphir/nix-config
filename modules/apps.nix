@@ -4,8 +4,6 @@
   # 
   #  Install all apps and packages here.
   #
-  # TODO Fell free to modify this file to fit your needs.
-  #
   ##########################################################################
 
   # Install packages from nix's official package repository.
@@ -22,10 +20,10 @@
   ];
   #environment.variables.EDITOR = "nvim";
 
+  # install homebrew itself
   nix-homebrew = {
     enable = true;
-    #enableRosetta = if (system == "aarch64-darwin") then true else false;
-    #autoMigrate = true;
+    enableRosetta = false;
     user = username;
     mutableTaps = false;
     taps = {
@@ -35,8 +33,8 @@
   };
 
   # 
-  # The apps installed by homebrew are not managed by nix, and not reproducible!
-  # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
+  #The apps installed by homebrew are not managed by nix, and not reproducible!
+  #But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
     enable = true;
     user = username;
@@ -52,7 +50,6 @@
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas 
     masApps = {
-      # TODO Feel free to add your favorite apps here.
       # Xcode = 497799835;
       # Wechat = 836500024;
       # NeteaseCloudMusic = 944848654;
@@ -62,12 +59,12 @@
       # QQMusic = 595615424;
     };
 
-    # taps = [
-    #   "homebrew/services"
-    # ];
+    taps = [
+      "homebrew/homebrew-core"
+      "homebrew/homebrew-cask"
+    ];
 
     # `brew install`
-    # TODO Feel free to add your favorite apps here.
     brews = [
       "wget" # download tool
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
@@ -76,7 +73,6 @@
     ];
 
     # `brew install --cask`
-    # TODO Feel free to add your favorite apps here.
     casks = [
       "firefox"
       #"google-chrome"
@@ -86,7 +82,6 @@
       #"telegram"
       "discord"
 
-      "anki"
       "iina" # video player
       "raycast" # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       "stats" # beautiful system monitor
