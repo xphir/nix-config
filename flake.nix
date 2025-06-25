@@ -45,6 +45,7 @@
     self,
     nixpkgs,
     darwin,
+    nix-homebrew,
     home-manager,
     homebrew-cask,
     homebrew-core,
@@ -58,7 +59,7 @@
     specialArgs =
       inputs
       // {
-        inherit username useremail hostname;
+        inherit username useremail hostname system;
       };
   in {
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
@@ -68,6 +69,9 @@
         ./modules/system.nix
         ./modules/apps.nix
         ./modules/host-users.nix
+
+        # nix-homebrew
+        nix-homebrew.darwinModules.nix-homebrew
 
         # home manager
         home-manager.darwinModules.home-manager

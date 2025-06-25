@@ -1,4 +1,4 @@
-{ pkgs, username, ... }: {
+{ pkgs, username, system, homebrew-core, homebrew-cask,  ... }: {
 
   ##########################################################################
   # 
@@ -21,6 +21,18 @@
     nh # another Nix CLI helper
   ];
   #environment.variables.EDITOR = "nvim";
+
+  nix-homebrew = {
+    enable = true;
+    #enableRosetta = if (system == "aarch64-darwin") then true else false;
+    #autoMigrate = true;
+    user = username;
+    mutableTaps = false;
+    taps = {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+    };
+  };
 
   # 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -50,9 +62,9 @@
       # QQMusic = 595615424;
     };
 
-    taps = [
-      "homebrew/services"
-    ];
+    # taps = [
+    #   "homebrew/services"
+    # ];
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
