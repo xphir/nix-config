@@ -1,7 +1,7 @@
-# just is a command runner, Justfile is very similar to Makefile, but simpler.
-
-# TODO update hostname here!
-hostname := "your-hostname"
+all_cores := `case "$(uname -s)" in Linux) nproc;; Darwin) sysctl -n hw.logicalcpu;; esac`
+current_hostname := `hostname -s`
+current_username := `whoami`
+backup_ext := `date +%Y%m%d-%H%M`
 
 # List all the just commands
 default:
@@ -15,14 +15,14 @@ default:
 
 #  TODO Feel free to remove this target if you don't need a proxy to speed up the build process
 [group('desktop')]
-darwin:
+darwin hostname=current_hostname:
   nix build .#darwinConfigurations.{{hostname}}.system \
     --extra-experimental-features 'nix-command flakes'
 
   ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}}
 
 [group('desktop')]
-darwin-debug:
+darwin-debug hostname=current_hostname:
   nix build .#darwinConfigurations.{{hostname}}.system --show-trace --verbose \
     --extra-experimental-features 'nix-command flakes'
 

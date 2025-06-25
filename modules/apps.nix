@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, username, ... }: {
 
   ##########################################################################
   # 
@@ -26,7 +26,7 @@
   # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
     enable = true;
-
+    user = username;
     onActivation = {
       #autoUpdate = true; # Fetch the newest stable branch of Homebrew's git repo
       #upgrade = true; # Upgrade outdated casks, formulae, and App Store apps
