@@ -18,6 +18,7 @@
     #neovim
     git
     just # use Justfile to simplify nix-darwin's commands 
+    nh # another Nix CLI helper
   ];
   #environment.variables.EDITOR = "nvim";
 
