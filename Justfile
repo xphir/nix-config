@@ -113,9 +113,3 @@ gcroot:
 fmt:
   # format the nix files in this repo
   nix fmt .
-
-[group('tools')]
-nvim:
-  # run neovim
-  nix run .#nvim \
-    --extra-experimental-features 'nix-command flakes'

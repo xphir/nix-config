@@ -3,9 +3,9 @@
     # Misc
     tlrc
     cowsay
-    cmatrix
+    #cmatrix
     yq
-    python3
+    #python3
   ];
 
   programs = {

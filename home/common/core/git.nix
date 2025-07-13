@@ -2,7 +2,6 @@
   lib,
   pkgs,
   myvars,
-
   ...
 }: {
   # Remove existing ~/.gitconfig to ensure git uses ~/.config/git/config

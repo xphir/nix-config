@@ -20,10 +20,10 @@
     stateVersion = "25.05";
 
     # Common environment variables
-    sessionVariables = {
-      # EDITOR = "nvim";
-      # VISUAL = "nvim";
-    };
+    # sessionVariables = {
+    #   EDITOR = "nvim";
+    #   VISUAL = "nvim";
+    # };
   };
 
   # Allow unfree packages

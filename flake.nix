@@ -47,7 +47,6 @@
       url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = inputs @ {
@@ -71,12 +70,12 @@
       aarch64 = "aarch64-darwin";
     };
     linuxSystems = {
-      x86_64 = "x86_64-linux";
-      aarch64 = "aarch64-linux";
+      # x86_64 = "x86_64-linux";
+      # aarch64 = "aarch64-linux";
     };
 
     allSystems = builtins.attrValues darwinSystems ++ builtins.attrValues linuxSystems;
-    forAllSystems = func: (nixpkgs.lib.genAttrs allSystems func); 
+    forAllSystems = func: (nixpkgs.lib.genAttrs allSystems func);
   in {
     # Export modules for use in other flakes
     darwinModules = {
@@ -85,7 +84,7 @@
 
     homeModules = {
       darwin = ./home/darwin;
-      linux = ./home/linux;
+      # linux = ./home/linux;
     };
 
     # Export lib and vars for reuse
@@ -117,8 +116,9 @@
     };
 
     # standalone neovim package for each system
-    packages = forAllSystems (system: {
-    });
+    packages =
+      forAllSystems (system: {
+      });
 
     # Format the nix code in this flake
     formatter = forAllSystems (
