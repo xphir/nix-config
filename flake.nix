@@ -37,10 +37,6 @@
 
     # theme
     catppuccin.url = "github:catppuccin/nix";
-    catppuccin-vsc = {
-      url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # terminal
     ghostty = {

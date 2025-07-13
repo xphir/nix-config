@@ -60,6 +60,7 @@
       ++ lib.optionals config.personal.enable [
         # "cursor"
         "steam"
+        "vscode"
         # "slack"
         # "zoom"
       ];
@@ -72,14 +73,13 @@
       # Xcode = 497799835;
       #   wireguard = 1451685025;
       Bitwarden = 1352778147;
-      #PDFgear = 6469021132;
     };
   };
 
   # Add Homebrew paths to the session path
   environment.systemPath = lib.mkBefore [
     # "/usr/local/bin" # intel mac
-    "/opt/homebrew/bin" # m1 mac
+    "/opt/homebrew/bin" # mX mac
     "/opt/homebrew/sbin"
   ];
 }

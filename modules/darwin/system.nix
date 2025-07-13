@@ -178,9 +178,7 @@
         "com.apple.ImageCapture".disableHotPlug = true;
         "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
-            "64" = {enabled = false;}; # ShowLaunchpad shortcut
-
-            # Override Mission Controle with Control + K
+            # Override Mission Control with Control + K
             "32" = {
               enabled = true; # Enable the new binding
               value = {
@@ -188,7 +186,6 @@
                 type = "standard";
               };
             };
-
             # Override Application windows with Control + J
             "33" = {
               enabled = true; # Enable the new binding
@@ -196,6 +193,23 @@
                 parameters = [106 38 1310720];
                 type = "standard";
               };
+            };
+            "60" = {
+            # Disable '^ + Space' for selecting the previous input source
+            enabled = false;
+            };
+            "61" = {
+              # Disable '^ + Option + Space' for selecting the next input source
+              enabled = false;
+            };
+            # Disable 'Cmd + Space' for Spotlight Search
+            "64" = {
+              enabled = false;
+            };
+            # Disable 'Cmd + Alt + Space' for Finder search window
+            "65" = {
+              # Set to false to disable
+              enabled = true;
             };
           };
         };
