@@ -60,6 +60,16 @@
         "orbstack" # Lightweight, fast, and secure virtualization for macOS
 
         "spotify" # Music streaming service
+        "soundsource" # Control audio on a per-app basis
+        "bambu-studio" # 3D printing software for Bambu Lab printers
+        "logi-options+" # Logitech Options+ is a mouse and keyboard customization app
+        "shottr" # Screenshot tool for macOS
+        "notion" # All-in-one workspace for notes, tasks, wikis, and databases
+        "moonlight" # Game streaming app that allows you to stream your PC games to other devices
+        "jordanbaird-ice" # A simple, fast, and secure way to share files with anyone, anywhere
+        "focusrite-control" # Software for controlling Focusrite audio interfaces
+        "discord" # VoIP, instant messaging and digital distribution platform
+        "devtoys" # A Swiss Army knife for developers, providing a collection of tools for various tasks
       ]
       ++ lib.optionals config.personal.enable [
         # "cursor"
@@ -73,9 +83,8 @@
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
     masApps = {
-      # Xcode = 497799835;
-      #   wireguard = 1451685025;
-      Bitwarden = 1352778147;
+      bitwarden = 1352778147;
+      amphetamine = 937984704;
     };
   };
 
