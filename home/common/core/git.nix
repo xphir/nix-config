@@ -1,6 +1,8 @@
 {
   lib,
   pkgs,
+  myvars,
+
   ...
 }: {
   # Remove existing ~/.gitconfig to ensure git uses ~/.config/git/config
@@ -17,8 +19,8 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "neversad-dev";
-    userEmail = "7419136+neversad-dev@users.noreply.github.com";
+    userName = myvars.userfullname;
+    userEmail = myvars.useremail;
 
     ignores = [
       ".DS_Store"
@@ -110,14 +112,8 @@
       };
 
       url = {
-        "git@github.com:neversad-dev/" = {
-          insteadOf = "nd:";
-        };
         "git@github.com:" = {
           insteadOf = "gh:";
-        };
-        "ssh://git@github.com/neversad-dev" = {
-          insteadOf = "https://github.com/neversad-dev";
         };
       };
 

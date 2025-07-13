@@ -70,7 +70,7 @@
       # Xcode = 497799835;
       #   wireguard = 1451685025;
       Bitwarden = 1352778147;
-      PDFgear = 6469021132;
+      #PDFgear = 6469021132;
     };
   };
 

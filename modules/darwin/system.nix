@@ -1,4 +1,4 @@
-{pkgs, username, ...}:
+{pkgs, myvars, ...}:
 ###################################################################################
 #
 #  macOS's System configuration
@@ -17,7 +17,7 @@
 
   system = {
     # Set the primary user for system-wide configurations
-    primaryUser = username;
+    primaryUser = myvars.username;
 
     # Proper system activation script
     activationScripts.extraActivation.text = ''
@@ -224,7 +224,7 @@
   ];
 
   # Set default shell for user
-  users.users.${username} = {
+  users.users.${myvars.username} = {
     shell = pkgs.zsh;
   };
 
