@@ -6,5 +6,6 @@
     jq
     direnv
     home-manager
+    watchman
   ];
 }
