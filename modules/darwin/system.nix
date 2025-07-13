@@ -195,8 +195,8 @@
               };
             };
             "60" = {
-            # Disable '^ + Space' for selecting the previous input source
-            enabled = false;
+              # Disable '^ + Space' for selecting the previous input source
+              enabled = false;
             };
             "61" = {
               # Disable '^ + Option + Space' for selecting the next input source
