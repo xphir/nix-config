@@ -24,10 +24,10 @@
     primaryUser = myvars.username;
 
     # Proper system activation script
-    activationScripts.extraActivation.text = ''
-      # activateSettings -u will reload the settings from the database and apply them to the current session
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
+    # activationScripts.extraActivation.text = ''
+    #   # activateSettings -u will reload the settings from the database and apply them to the current session
+    #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    # '';
 
     defaults = {
       LaunchServices.LSQuarantine = false;
@@ -116,7 +116,7 @@
         _HIHideMenuBar = false;
         "com.apple.mouse.tapBehavior" = 1; # Configures the trackpad tap behavior. Mode 1 enables tap to click.
         "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
-        "com.apple.swipescrolldirection" = false; # enable natural scrolling(default to true)
+        "com.apple.swipescrolldirection" = false; # disable natural scrolling(default to true)
         "com.apple.trackpad.enableSecondaryClick" = true;
       };
 
@@ -154,7 +154,7 @@
 
       loginwindow = {
         GuestEnabled = false; # disable guest user
-        SHOWFULLNAME = false; # show full name in login window
+        SHOWFULLNAME = true; # show full name in login window
       };
 
       # universalaccess.reduceMotion = true;  # TODO causes error
