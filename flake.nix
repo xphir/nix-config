@@ -110,7 +110,6 @@
         modules = [
           ./home/darwin
           ./hosts/fern/home.nix
-          {home.packages = [(darwinSystems.aarch64)];}
         ];
       };
     };
