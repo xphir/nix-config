@@ -33,17 +33,17 @@
       LaunchServices.LSQuarantine = false;
       # customize dock
       dock = {
-        autohide = true;
+        autohide = false;
         autohide-delay = 1.0;
         autohide-time-modifier = 0.0;
         launchanim = false;
         mineffect = "scale";
         mru-spaces = false;
-        orientation = "left";
+        orientation = "bottom";
         persistent-apps = [];
         persistent-others = [];
         show-recents = false;
-        tilesize = 10;
+        tilesize = 50;
 
         wvous-tl-corner = 1;
         wvous-tr-corner = 1;
@@ -78,8 +78,8 @@
       # Incomplete list of macOS `defaults` commands :
       #   https://github.com/yannbertrand/macos-defaults
       NSGlobalDomain = {
-        AppleEnableMouseSwipeNavigateWithScrolls = false; # Enables swiping left or right with two fingers to navigate backward or forward
-        AppleEnableSwipeNavigateWithScrolls = false; # Enables swiping left or right with two fingers to navigate backward or forward
+        #AppleEnableMouseSwipeNavigateWithScrolls = false; # Enables swiping left or right with two fingers to navigate backward or forward
+        #AppleEnableSwipeNavigateWithScrolls = false; # Enables swiping left or right with two fingers to navigate backward or forward
         AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark"; # dark mode
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
@@ -113,10 +113,10 @@
         NSTableViewDefaultSizeMode = 2; # Sets the size of the finder sidebar icons: 1 (small), 2 (medium) or 3 (large). The default is 3.
         NSWindowShouldDragOnGesture = true;
 
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
         "com.apple.mouse.tapBehavior" = 1; # Configures the trackpad tap behavior. Mode 1 enables tap to click.
         "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
-        "com.apple.swipescrolldirection" = true; # enable natural scrolling(default to true)
+        "com.apple.swipescrolldirection" = false; # enable natural scrolling(default to true)
         "com.apple.trackpad.enableSecondaryClick" = true;
       };
 

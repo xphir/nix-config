@@ -54,6 +54,8 @@
         "transnomino" # A batch rename utility for the Mac
         "handbrake" # Open-source video transcoder available for Linux, Mac, and Windows
         "obsidian" # Knowledge base that works on top of a local folder of plain text Markdown files
+
+        "rectangle" # a window management app based on Spectacle
       ]
       ++ lib.optionals config.personal.enable [
         # "cursor"
