@@ -1,4 +1,4 @@
-{ pkgs, username, system, homebrew-core, homebrew-cask,  ... }: {
+{ pkgs, username, system, ... }: {
 
   ##########################################################################
   # 
@@ -19,18 +19,6 @@
     nh # another Nix CLI helper
   ];
   #environment.variables.EDITOR = "nvim";
-
-  # install homebrew itself
-  nix-homebrew = {
-    enable = true;
-    enableRosetta = false;
-    user = username;
-    mutableTaps = false;
-    taps = {
-      "homebrew/homebrew-core" = homebrew-core;
-      "homebrew/homebrew-cask" = homebrew-cask;
-    };
-  };
 
   # 
   #The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -59,11 +47,6 @@
       # QQMusic = 595615424;
     };
 
-    taps = [
-      "homebrew/homebrew-core"
-      "homebrew/homebrew-cask"
-    ];
-
     # `brew install`
     brews = [
       "wget" # download tool
@@ -76,7 +59,7 @@
     casks = [
       "firefox"
       #"google-chrome"
-      "visual-studio-code"
+      #"visual-studio-code"
 
       # IM & audio & remote desktop & meeting
       #"telegram"
@@ -85,7 +68,6 @@
       "iina" # video player
       "raycast" # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       "stats" # beautiful system monitor
-      #"eudic" # 欧路词典
 
       # Development
       #"insomnia" # REST client

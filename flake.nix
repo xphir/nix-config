@@ -24,15 +24,6 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
     #mac-app-util.url = "github:hraban/mac-app-util";
   };
 
@@ -46,15 +37,12 @@
     nixpkgs,
     darwin,
     home-manager,
-    nix-homebrew,
-    homebrew-cask,
-    homebrew-core,
     ...
   }: let
     username = "elliot.schot";
     useremail = "elliot.schot@gmail.com";
     system = "aarch64-darwin";
-    hostname = "leaf";
+    hostname = "fern";
 
     specialArgs =
       inputs
@@ -69,9 +57,6 @@
         ./modules/system.nix
         ./modules/apps.nix
         ./modules/host-users.nix
-
-        # nix-homebrew
-        nix-homebrew.darwinModules.nix-homebrew
 
         # home manager
         home-manager.darwinModules.home-manager
