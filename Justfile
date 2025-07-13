@@ -1,11 +1,11 @@
-all_cores := `case "$(uname -s)" in Linux) nproc;; Darwin) sysctl -n hw.logicalcpu;; esac`
-current_hostname := `hostname -s`
-current_username := `whoami`
-backup_ext := `date +%Y%m%d-%H%M`
+# just is a command runner, Justfile is very similar to Makefile, but simpler.
+
+hostname := `hostname`
+
 
 # List all the just commands
 default:
-  @just --list
+    @just --list
 
 ############################################################################
 #
@@ -13,20 +13,51 @@ default:
 #
 ############################################################################
 
-#  TODO Feel free to remove this target if you don't need a proxy to speed up the build process
+
 [group('desktop')]
-darwin hostname=current_hostname:
+darwin: 
+  nh darwin switch .
+
+[group('desktop')]
+darwin-build:
+  nh darwin build . 
+
+[group('desktop')]
+darwin-debug:
+  nh darwin switch . --verbose
+
+# Legacy darwin command (kept for compatibility)
+[group('desktop')]
+darwin-legacy: 
   nix build .#darwinConfigurations.{{hostname}}.system \
     --extra-experimental-features 'nix-command flakes'
 
   ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}}
 
-[group('desktop')]
-darwin-debug hostname=current_hostname:
-  nix build .#darwinConfigurations.{{hostname}}.system --show-trace --verbose \
+
+############################################################################
+#
+#  Home-manager related commands
+#
+############################################################################
+
+
+[group('home-manager')]
+home:
+  nh home switch .
+
+[group('home-manager')]
+home-build:
+  nh home build .
+
+# Legacy home-manager command (kept for compatibility)
+[group('home-manager')]
+home-legacy:
+  home-manager switch --flake . \
+    -b home-manager.backup \
     --extra-experimental-features 'nix-command flakes'
 
-  ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}} --show-trace --verbose
+
 
 ############################################################################
 #
@@ -34,16 +65,17 @@ darwin-debug hostname=current_hostname:
 #
 ############################################################################
 
+
 # Update all the flake inputs
 [group('nix')]
 up:
-  nix flake update
+  nix flake update --commit-lock-file
 
 # Update specific input
 # Usage: just upp nixpkgs
 [group('nix')]
 upp input:
-  nix flake update {{input}}
+  nix flake update {{input}} --commit-lock-file
 
 # List all generations of the system profile
 [group('nix')]
@@ -55,28 +87,35 @@ history:
 repl:
   nix repl -f flake:nixpkgs
 
-# remove all generations older than 7 days
-# on darwin, you may need to switch to root user to run this command
+# Clean old generations and garbage collect with nh
 [group('nix')]
 clean:
-  sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+  nh clean all --keep 3
 
-# Garbage collect all unused nix store entries
+
+# Legacy garbage collection (kept for compatibility)
 [group('nix')]
-gc:
+gc-legacy:
   # garbage collect all unused nix store entries(system-wide)
   sudo nix-collect-garbage --delete-older-than 7d
   # garbage collect all unused nix store entries(for the user - home-manager)
   # https://github.com/NixOS/nix/issues/8508
   nix-collect-garbage --delete-older-than 7d
 
-[group('nix')]
-fmt:
-  # format the nix files in this repo
-  nix fmt
 
 # Show all the auto gc roots in the nix store
 [group('nix')]
 gcroot:
   ls -al /nix/var/nix/gcroots/auto/
+  
 
+[group('tools')]
+fmt:
+  # format the nix files in this repo
+  nix fmt .
+
+[group('tools')]
+nvim:
+  # run neovim
+  nix run .#nvim \
+    --extra-experimental-features 'nix-command flakes'
