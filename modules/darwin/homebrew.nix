@@ -56,10 +56,11 @@
         "obsidian" # Knowledge base that works on top of a local folder of plain text Markdown files
 
         "rectangle" # a window management app based on Spectacle
+        "steam" # Video game digital distribution service
+        "orbstack" # Lightweight, fast, and secure virtualization for macOS
       ]
       ++ lib.optionals config.personal.enable [
         # "cursor"
-        "steam"
         "visual-studio-code"
         # "slack"
         # "zoom"
