@@ -3,6 +3,7 @@
     git
     just
     jq
+    direnv
     home-manager
   ];
 }

@@ -25,13 +25,13 @@
     # `brew install --cask`
     casks =
       [
-        "ghostty"
-        "firefox"
+        "ghostty" # Terminal emulator that uses platform-native UI and GPU acceleration
+        "firefox" # Web browser
         # "google-chrome"
         # "zen"
-        "the-unarchiver"
-        "alt-tab"
-        # "aerospace"
+        "the-unarchiver" # Unpacks archive files
+        "alt-tab" # Enable Windows-like alt-tab
+
         # "bettertouchtool"
 
         # messengers
@@ -43,16 +43,16 @@
         "stats" # beautiful system status monitor in menu bar
         # "monitorcontrol"
 
-        "font-sf-pro"
-        "sf-symbols"
-        "balenaetcher"
+        "font-sf-pro" # San Francisco Pro, SF Pro
+        "sf-symbols" # Tool that provides consistent, highly configurable symbols for apps
+        "balenaetcher" # Flash OS images to SD cards & USB drives, safely and easily.
 
         # "android-platform-tools"
         # "android-file-transfer"
         # "android-studio"
-        "localsend"
-        "transnomino" # A batch rename utility for the Mac
-        "handbrake" # Open-source video transcoder available for Linux, Mac, and Windows
+        "localsend" # Share files to nearby devices. Free, open-source, cross-platform.
+        # "transnomino" # A batch rename utility for the Mac
+        # "handbrake" # Open-source video transcoder available for Linux, Mac, and Windows
         "obsidian" # Knowledge base that works on top of a local folder of plain text Markdown files
 
         "rectangle" # a window management app based on Spectacle
@@ -60,7 +60,7 @@
       ++ lib.optionals config.personal.enable [
         # "cursor"
         "steam"
-        "vscode"
+        "visual-studio-code"
         # "slack"
         # "zoom"
       ];
