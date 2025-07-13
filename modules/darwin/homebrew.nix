@@ -58,6 +58,8 @@
         "rectangle" # a window management app based on Spectacle
         "steam" # Video game digital distribution service
         "orbstack" # Lightweight, fast, and secure virtualization for macOS
+
+        "spotify" # Music streaming service
       ]
       ++ lib.optionals config.personal.enable [
         # "cursor"

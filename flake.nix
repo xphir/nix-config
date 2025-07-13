@@ -49,7 +49,6 @@
     nix-darwin,
     nixpkgs,
     home-manager,
-    ghostty,
     ...
   }: let
     inherit (inputs.nixpkgs) lib;
