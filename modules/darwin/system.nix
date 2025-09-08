@@ -65,6 +65,15 @@
 
         _FXShowPosixPathInTitle = true; # show full path in finder title
         _FXSortFoldersFirst = true;
+
+        # Additional useful finder settings
+        ShowTabView = false; # Disable tab view
+        NewWindowTarget = "PfHm"; # New windows open to home directory
+        FXInfoPanesExpanded = {
+          General = true; # Expand general pane in Get Info
+          OpenWith = true; # Expand open with pane in Get Info
+          Privileges = true; # Expand privileges pane in Get Info
+        };
       };
 
       # customize trackpad
@@ -80,7 +89,7 @@
       NSGlobalDomain = {
         #AppleEnableMouseSwipeNavigateWithScrolls = false; # Enables swiping left or right with two fingers to navigate backward or forward
         #AppleEnableSwipeNavigateWithScrolls = false; # Enables swiping left or right with two fingers to navigate backward or forward
-        AppleICUForce24HourTime = true;
+        AppleICUForce24HourTime = false;
         AppleInterfaceStyle = "Dark"; # dark mode
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
         AppleMeasurementUnits = "Centimeters";
@@ -112,6 +121,27 @@
         NSScrollAnimationEnabled = true;
         NSTableViewDefaultSizeMode = 2; # Sets the size of the finder sidebar icons: 1 (small), 2 (medium) or 3 (large). The default is 3.
         NSWindowShouldDragOnGesture = true;
+
+        # File system and file handling
+        NSFileViewer.ShowSidebar = true; # Show sidebar in file dialogs
+        NSToolbar.FullScreenMenuBarVisible = true; # Show menu bar in full screen
+
+        # Keyboard and input settings
+        NSUserKeyEquivalents = {
+          # Add some useful global shortcuts
+          "Minimize" = "@m"; # Cmd+M to minimize
+          "Zoom" = "@^z"; # Cmd+Ctrl+Z to zoom
+        };
+
+        # Performance and system behavior
+        NSAppSleepDisabled = true; # Prevent apps from being put to sleep
+        NSQuitAlwaysKeepsWindows = false; # Don't restore windows on app relaunch
+        NSScrollViewRubberbanding = true; # Enable rubber band scrolling
+        NSUseAnimatedFocusRing = false; # Disable animated focus ring for performance
+
+        # Development and debugging
+        NSShowNonLocalizedStrings = false; # Don't show non-localized strings
+        WebKitDeveloperExtras = true; # Enable WebKit developer tools globally
 
         _HIHideMenuBar = false;
         "com.apple.mouse.tapBehavior" = 1; # Configures the trackpad tap behavior. Mode 1 enables tap to click.
@@ -155,16 +185,42 @@
       loginwindow = {
         GuestEnabled = false; # disable guest user
         SHOWFULLNAME = true; # show full name in login window
+        # Additional security settings
+        DisableConsoleAccess = true; # Disable console access from login window
+        PowerOffDisabledWhileLoggedIn = true; # Disable power off when user is logged in
+        RestartDisabledWhileLoggedIn = true; # Disable restart when user is logged in
+        ShutDownDisabledWhileLoggedIn = true; # Disable shutdown when user is logged in
+        SleepDisabledWhileLoggedIn = false; # Allow sleep when user is logged in
       };
 
       # universalaccess.reduceMotion = true;  # TODO causes error
 
+      # Activity Monitor settings
+      ActivityMonitor = {
+        IconType = 5; # Show CPU usage in dock icon
+        SortColumn = "CPUUsage";
+        SortDirection = 0;
+      };
+
+      # Bluetooth settings
+      bluetooth = {
+        BluetoothAudioEnableAAC = true; # Enable AAC codec for better audio quality
+      };
+
+      # Energy and power settings
+      pmset = {
+        powernap = false; # Disable Power Nap to save battery
+        womp = false; # Disable wake on network access
+        ring = false; # Disable wake on modem ring
+        autorestart = false; # Disable automatic restart on power loss
+        displaysleep = 10; # Display sleep after 10 minutes
+        sleep = 30; # System sleep after 30 minutes on battery
+        disksleep = 10; # Disk sleep after 10 minutes
+      };
+
       # Customize settings that not supported by nix-darwin directly
-      # see the source code of this project to get more undocumented options:
-      #    https://github.com/rgcr/m-cli
-      #
-      # All custom entries can be found by running `defaults read` command.
-      # or `defaults read xxx` to read a specific domain.
+      # Incomplete list of macOS `defaults` commands :
+      #   https://github.com/yannbertrand/macos-defaults
       CustomUserPreferences = {
         "com.apple.desktopservices" = {
           # Avoid creating .DS_Store files on network or USB volumes
@@ -176,43 +232,78 @@
         };
         # Prevent Photos from opening automatically when devices are plugged in
         "com.apple.ImageCapture".disableHotPlug = true;
-        "com.apple.symbolichotkeys" = {
-          AppleSymbolicHotKeys = {
-            # Override Mission Control with Control + K
-            "32" = {
-              enabled = true; # Enable the new binding
-              value = {
-                parameters = [107 40 1310720];
-                type = "standard";
-              };
-            };
-            # Override Application windows with Control + J
-            "33" = {
-              enabled = true; # Enable the new binding
-              value = {
-                parameters = [106 38 1310720];
-                type = "standard";
-              };
-            };
-            "60" = {
-              # Disable '^ + Space' for selecting the previous input source
-              enabled = false;
-            };
-            "61" = {
-              # Disable '^ + Option + Space' for selecting the next input source
-              enabled = false;
-            };
-            # Disable 'Cmd + Space' for Spotlight Search
-            "64" = {
-              enabled = false;
-            };
-            # Disable 'Cmd + Alt + Space' for Finder search window
-            "65" = {
-              # Set to false to disable
-              enabled = true;
-            };
-          };
+
+        # Safari settings for development
+        "com.apple.Safari" = {
+          IncludeInternalDebugMenu = true; # Enable Safari's debug menu
+          IncludeDevelopMenu = true; # Enable Safari's develop menu
+          WebKitDeveloperExtrasEnabledPreferenceKey = true; # Enable web inspector
+          WebKitPreferences.developerExtrasEnabled = true;
+          # Show full URL in address bar
+          ShowFullURLInSmartSearchField = true;
+          # Disable auto-fill
+          AutoFillFromAddressBook = false;
+          AutoFillPasswords = false;
+          AutoFillCreditCardData = false;
+          AutoFillMiscellaneousForms = false;
         };
+
+        # Terminal settings
+        "com.apple.Terminal" = {
+          StringEncodings = [4]; # UTF-8 encoding
+          SecureKeyboardEntry = true; # Enable secure keyboard entry
+        };
+
+        # TextEdit settings - plain text by default
+        "com.apple.TextEdit" = {
+          RichText = false; # Default to plain text
+          PlainTextEncoding = 4; # UTF-8
+          PlainTextEncodingForWrite = 4; # UTF-8
+        };
+
+        # Disk Utility settings
+        "com.apple.DiskUtility" = {
+          DUDebugMenuEnabled = true; # Enable debug menu
+          advanced-image-options = true; # Show advanced options
+        };
+
+        # Console app settings
+        "com.apple.Console" = {
+          UseLogTimestamps = true; # Show timestamps in logs
+        };
+
+        # Security and privacy
+        "com.apple.LaunchServices" = {
+          LSHandlers = [
+            {
+              LSHandlerContentType = "public.unix-executable";
+              LSHandlerRoleShell = "com.apple.Terminal";
+            }
+          ];
+        };
+
+        # Time Machine settings
+        "com.apple.TimeMachine" = {
+          DoNotOfferNewDisksForBackup = true; # Don't prompt for new backup disks
+        };
+
+        # Network settings
+        "com.apple.NetworkBrowser" = {
+          BrowseAllInterfaces = true; # Show all network interfaces
+          DisableAirDrop = false; # Keep AirDrop enabled
+        };
+
+        # QuickLook settings
+        "com.apple.finder" = {
+          QLEnableTextSelection = true; # Enable text selection in QuickLook
+        };
+
+        # Crash Reporter settings
+        "com.apple.CrashReporter" = {
+          UseUNC = 1; # Use unchecked crash reporting
+        };
+
+        # Keyboard shortcuts are configured in keyboard-shortcuts.nix
       };
     };
 
